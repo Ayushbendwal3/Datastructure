@@ -142,17 +142,41 @@ class LinkedList:
 
             temp = temp.next
 
+    def reverse(self):
+        if self.head is None:
+            return None
+
+        prev = None
+        temp = self.head
+
+        while temp is not None:
+            next = temp.next
+            temp.next = prev
+            prev = temp
+            temp = next
+        self.head = prev
+
+    def ispalindrome(self):
+        temp = self.head
+        s = ''
+        while temp:
+            s += str(temp.data)
+            temp = temp.next
+
+        revs = s[::-1]
+        if s == revs:
+            print(1)
+        else:
+            print(0)
+
 
 if __name__ == "__main__":
     ll = LinkedList()
-    list1 = [1, 2, 3, 4, 5, 6]
+    list1 = [1,2,1]
     ll.insert_values(list1)
     ll.printList()
     ll.insert_after_value(2, 2.5)
     ll.printList()
     ll.remove_by_value(2.5)
     ll.printList()
-    ll.pop()
-    ll.printList()
-    ll.pop()
-    ll.printList()
+    ll.ispalindrome()
